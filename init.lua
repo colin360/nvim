@@ -35,3 +35,19 @@ require "autocmds"
 vim.schedule(function()
   require "mappings"
 end)
+
+-- Enable whitespace rendering
+vim.opt.list = true
+
+vim.opt.listchars = {
+  space = '·',      -- Displays for regular spaces
+  tab = '» ',       -- Displays for tab characters (requires a trailing space)
+  trail = '•',      -- Displays for trailing spaces at the end of lines
+  -- eol = '↲',        -- Displays at the end of each line
+  nbsp = '␣',       -- Displays for non-breaking spaces
+}
+
+-- Set the color of whitespace characters to gruvbox dark bg1 color
+vim.api.nvim_set_hl(0, "Whitespace", { fg = "#3c3836" })
+
+vim.keymap.set('n', '<leader>rw', ':set list!<CR>', { desc = 'Toggle render whitespace', silent = true })
